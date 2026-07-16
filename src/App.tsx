@@ -1,28 +1,30 @@
-import './App.css'
-import {Route, Routes} from "react-router";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
 
-import Community from "./pages/Community.tsx";
-import MarketplacePage from "./pages/Marketplace.tsx";
-import ProductDetails from "./pages/ProductDetails.tsx";
-import PageNotFound from "./pages/NotFound.tsx";
-import PostDetails from "./pages/PostDetails.tsx";
-import MyCollection from "./pages/MyCollection.tsx";
+import Navbar from "./components/Navbar";
+
+import Community from "./pages/Community";
+import MarketplacePage from "./pages/Marketplace";
+import ProductDetails from "./pages/ProductDetails";
+import PageNotFound from "./pages/NotFound";
+import PostDetails from "./pages/PostDetails";
+import MyCollection from "./pages/MyCollection";
 
 function App() {
-
-
     return (
-        <Routes>
-            <Route path="/" element={<Community/>}/>
-            <Route path="/market" element={<MarketplacePage/>}/>
-            <Route path="/product" element={<ProductDetails/>}/>
-            <Route path="/pagenot" element={<PageNotFound/>}/>
-            <Route path="/post" element={<PostDetails/>}/>
-            <Route path="/collection" element={<MyCollection/>}/>
+        <>
+            <Navbar />
 
-
-        </Routes>
-    )
+            <Routes>
+                <Route path="/" element={<MarketplacePage />} />
+                <Route path="/community" element={<Community />} />
+                <Route path="/product" element={<ProductDetails />} />
+                <Route path="/post" element={<PostDetails />} />
+                <Route path="/collection" element={<MyCollection />} />
+                <Route path="*" element={<PageNotFound />} />
+            </Routes>
+        </>
+    );
 }
 
 export default App;
