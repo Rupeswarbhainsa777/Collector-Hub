@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "user": {
+      "name": "Rahul Sharma",
+      "avatar": "https://i.pravatar.cc/100?img=1"
+    },
+    "category": "Trading Cards",
+    "image": "https://picsum.photos/600/500?random=11",
+    "caption": "Finally added this rare Charizard to my collection!",
+    "likes": 245,
+    "comments": 31,
+    "saved": false,
+    "liked": false,
+    "createdAt": "2026-07-14"
+  },
+  {
+    "id": 2,
+    "user": {
+      "name": "Priya Singh",
+      "avatar": "https://i.pravatar.cc/100?img=2"
+    },
+    "category": "Action Figures",
+    "image": "https://picsum.photos/600/500?random=12",
+    "caption": "Weekend haul 🔥",
+    "likes": 132,
+    "comments": 18,
+    "saved": false,
+    "liked": false,
+    "createdAt": "2026-07-13"
+  },
+  {
+    "id": 3,
+    "user": {
+      "name": "Ankit Verma",
+      "avatar": "https://i.pravatar.cc/100?img=3"
+    },
+    "category": "Diecast",
+    "image": "https://picsum.photos/600/500?random=13",
+    "caption": "Vintage Hot Wheels never gets old.",
+    "likes": 98,
+    "comments": 14,
+    "saved": false,
+    "liked": false,
+    "createdAt": "2026-07-12"
+  },
+  {
+    "id": 4,
+    "user": {
+      "name": "Sneha Patel",
+      "avatar": "https://i.pravatar.cc/100?img=4"
+    },
+    "category": "Funko Pops",
+    "image": "https://picsum.photos/600/500?random=14",
+    "caption": "My anime shelf is finally complete ❤️",
+    "likes": 201,
+    "comments": 29,
+    "saved": false,
+    "liked": false,
+    "createdAt": "2026-07-10"
+  }
+]

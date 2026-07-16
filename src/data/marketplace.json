@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "Charizard Holo Card",
+    "category": "Trading Cards",
+    "condition": "Mint",
+    "price": 15000,
+    "seller": "Rahul Sharma",
+    "location": "Delhi",
+    "image": "https://picsum.photos/300/300?random=1",
+    "description": "Rare first edition Charizard holographic card.",
+    "createdAt": "2026-07-12"
+  },
+  {
+    "id": 2,
+    "title": "Vintage Hot Wheels",
+    "category": "Diecast",
+    "condition": "Excellent",
+    "price": 3500,
+    "seller": "Ankit Verma",
+    "location": "Mumbai",
+    "image": "https://picsum.photos/300/300?random=2",
+    "description": "Limited edition Hot Wheels collectible.",
+    "createdAt": "2026-07-14"
+  },
+  {
+    "id": 3,
+    "title": "Marvel Iron Man Figure",
+    "category": "Action Figures",
+    "condition": "Good",
+    "price": 2800,
+    "seller": "Priya Singh",
+    "location": "Bengaluru",
+    "image": "https://picsum.photos/300/300?random=3",
+    "description": "12-inch Marvel Iron Man collectible figure.",
+    "createdAt": "2026-07-10"
+  },
+  {
+    "id": 4,
+    "title": "Vintage Coin Collection",
+    "category": "Coins",
+    "condition": "Excellent",
+    "price": 9000,
+    "seller": "Amit Das",
+    "location": "Kolkata",
+    "image": "https://picsum.photos/300/300?random=4",
+    "description": "Indian coins from 1947–1960.",
+    "createdAt": "2026-07-08"
+  },
+  {
+    "id": 5,
+    "title": "Naruto Funko Pop",
+    "category": "Funko Pops",
+    "condition": "Mint",
+    "price": 2400,
+    "seller": "Sneha Patel",
+    "location": "Pune",
+    "image": "https://picsum.photos/300/300?random=5",
+    "description": "Official Naruto Funko Pop figure.",
+    "createdAt": "2026-07-11"
+  },
+  {
+    "id": 6,
+    "title": "Classic Stamp Album",
+    "category": "Stamps",
+    "condition": "Fair",
+    "price": 4200,
+    "seller": "Rakesh Kumar",
+    "location": "Chennai",
+    "image": "https://picsum.photos/300/300?random=6",
+    "description": "International stamp collection.",
+    "createdAt": "2026-07-09"
+  }
+]
