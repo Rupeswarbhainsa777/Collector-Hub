@@ -1,6 +1,6 @@
 import { useState } from "react";
 import products from "../data/marketplace.json";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/common/SearchBar.tsx";
 
 const Marketplace = () => {
     const [search, setSearch] = useState("");

@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
-import Navbar from "./components/Navbar";
+import Navbar from "./components/common/Navbar.tsx";
 
 import Community from "./pages/Community";
 import MarketplacePage from "./pages/Marketplace";
