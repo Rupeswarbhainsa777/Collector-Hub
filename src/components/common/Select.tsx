@@ -8,12 +8,13 @@ interface SelectProps {
 
 export function Select({ label, value, onChange, options }: SelectProps) {
     return (
-        <label className="flex flex-col gap-1 text-xs font-medium text-slate-500 min-w-[9rem]">
-            {label}
+        <div className="flex items-center">
+            <label className="sr-only">{label}</label>
             <select
+                aria-label={label}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400"
+                className="h-8 rounded-md border border-gray-200 bg-white px-2.5 py-0 text-sm text-gray-700 shadow-xs focus:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900/10 transition-colors hover:border-gray-300"
             >
                 {options.map((opt) => (
                     <option key={opt.value} value={opt.value}>
@@ -21,6 +22,6 @@ export function Select({ label, value, onChange, options }: SelectProps) {
                     </option>
                 ))}
             </select>
-        </label>
+        </div>
     );
 }

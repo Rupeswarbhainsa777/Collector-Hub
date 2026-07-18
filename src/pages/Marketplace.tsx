@@ -3,13 +3,13 @@ import { useDebounce } from "../hooks/useDebounce.ts";
 import { useMemo } from "react";
 import { fetchMarketplaceItems } from "../api/mockapis.ts";
 import ProductCard from "../components/Marketplace/ProductCard.tsx";
-import {useAsync} from "../hooks/useAsync.ts";
+import { useAsync } from "../hooks/useAsync.ts";
 import SearchBar from "../components/common/SearchBar.tsx";
-import {EmptyState} from "../components/common/EmptyState.tsx";
-import {ErrorState} from "../components/common/ErrorState.tsx";
-import {Select} from "../components/common/Select.tsx";
-import type {Category, Condition} from "../types";
-import {SkeletonGrid} from "../components/common/SkeletonGrid.tsx";
+import { EmptyState } from "../components/common/EmptyState.tsx";
+import { ErrorState } from "../components/common/ErrorState.tsx";
+import { Select } from "../components/common/Select.tsx";
+import type { Category, Condition } from "../types";
+import { SkeletonGrid } from "../components/common/SkeletonGrid.tsx";
 
 const CONDITIONS: Condition[] = ['Mint', 'Near Mint', 'Good', 'Fair', 'Poor'];
 const CATEGORIES: Category[] = [
@@ -87,107 +87,137 @@ const MarketplacePage = () => {
     const hasActiveFilters = query || category !== 'All' || condition !== 'All';
 
     return (
-        <div>
-            <div>
-                <h1>Marketplace</h1>
-                <p>Browse collectibles from sellers around the world.</p>
-            </div>
+        <div className="min-h-screen bg-gray-50">
 
-            <div>
-                <div>
-                    <SearchBar
-                        value={query}
-                        onChange={(v) => updateParam("q", v)}
-                        placeholder="Search by title..."
-                    />
-                </div>
-
-                <div>
-                    <Select
-                        label="Category"
-                        value={category}
-                        onChange={(v) => updateParam("category", v)}
-                        options={[
-                            { label: "All Categories", value: "All" },
-                            ...CATEGORIES.map((c) => ({ label: c, value: c })),
-                        ]}
-                    />
-
-                    <Select
-                        label="Condition"
-                        value={condition}
-                        onChange={(v) => updateParam("condition", v)}
-                        options={[
-                            { label: "All Conditions", value: "All" },
-                            ...CONDITIONS.map((c) => ({ label: c, value: c })),
-                        ]}
-                    />
-
-                    <Select
-                        label="Sort by"
-                        value={sort}
-                        onChange={(v) => updateParam("sort", v)}
-                        options={[
-                            { label: "Newest", value: "newest" },
-                            { label: "Oldest", value: "oldest" },
-                            { label: "Price: Low to High", value: "price-asc" },
-                            { label: "Price: High to Low", value: "price-desc" },
-                        ]}
-                    />
-                </div>
-            </div>
-
-            {status === "loading" && <SkeletonGrid count={8} />}
-
-            {status === "error" && (
-                <ErrorState message={error ?? undefined} onRetry={reload} />
-            )}
-
-            {status === "success" && filteredItems.length === 0 && (
-                <EmptyState
-                    icon="🔎"
-                    title={
-                        hasActiveFilters
-                            ? "No items match your search"
-                            : "No listings yet"
-                    }
-                    description={
-                        hasActiveFilters
-                            ? "Try adjusting your search or filters to find what you're looking for."
-                            : "Check back soon — new collectibles are added regularly."
-                    }
-                    action={
-                        hasActiveFilters
-                            ? {
-                                label: "Clear filters",
-                                onClick: () =>
-                                    setParams(new URLSearchParams(), { replace: true }),
-                            }
-                            : undefined
-                    }
-                />
-            )}
-
-            {status === "success" && filteredItems.length > 0 && (
-                <>
-                    <p>
-                        {filteredItems.length}{" "}
-                        {filteredItems.length === 1 ? "item" : "items"} found
-                    </p>
-
-                    <div>
-                        {filteredItems.map((item) => (
-                            <ProductCard
-                                key={item.id}
-                                item={item}
-                                linkState={{
-                                    from: `${window.location.pathname}${window.location.search}`,
-                                }}
-                            />
-                        ))}
+            {/* ── Page Header ─────────────────────────────────────────────── */}
+            <div className="border-b border-gray-200 bg-white">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="flex items-center justify-between py-6">
+                        <div>
+                            <h1 className="text-xl font-semibold text-gray-900">
+                                Marketplace
+                            </h1>
+                            <p className="mt-0.5 text-sm text-gray-500">
+                                Browse collectibles from sellers around the world.
+                            </p>
+                        </div>
                     </div>
-                </>
-            )}
+                </div>
+            </div>
+
+            {/* ── Toolbar ─────────────────────────────────────────────────── */}
+            <div className="border-b border-gray-200 bg-white">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="flex flex-wrap items-center gap-2 py-3">
+                        {/* Search */}
+                        <div className="flex-1 min-w-[180px] max-w-xs">
+                            <SearchBar
+                                value={query}
+                                onChange={(v) => updateParam("q", v)}
+                                placeholder="Search by title..."
+                            />
+                        </div>
+
+                        {/* Divider */}
+                        <div className="hidden h-5 w-px bg-gray-200 sm:block" />
+
+                        {/* Filters inline */}
+                        <div className="flex flex-wrap items-center gap-2">
+                            <Select
+                                label="Category"
+                                value={category}
+                                onChange={(v) => updateParam("category", v)}
+                                options={[
+                                    { label: "All Categories", value: "All" },
+                                    ...CATEGORIES.map((c) => ({ label: c, value: c })),
+                                ]}
+                            />
+                            <Select
+                                label="Condition"
+                                value={condition}
+                                onChange={(v) => updateParam("condition", v)}
+                                options={[
+                                    { label: "All Conditions", value: "All" },
+                                    ...CONDITIONS.map((c) => ({ label: c, value: c })),
+                                ]}
+                            />
+                            <Select
+                                label="Sort by"
+                                value={sort}
+                                onChange={(v) => updateParam("sort", v)}
+                                options={[
+                                    { label: "Newest", value: "newest" },
+                                    { label: "Oldest", value: "oldest" },
+                                    { label: "Price: Low to High", value: "price-asc" },
+                                    { label: "Price: High to Low", value: "price-desc" },
+                                ]}
+                            />
+                        </div>
+
+                        {/* Clear filters pill — only when active */}
+                        {hasActiveFilters && (
+                            <button
+                                onClick={() => setParams(new URLSearchParams(), { replace: true })}
+                                className="ml-auto flex items-center gap-1.5 rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900"
+                            >
+                                Clear filters
+                                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-gray-100 text-[10px] text-gray-500">✕</span>
+                            </button>
+                        )}
+                    </div>
+                </div>
+            </div>
+
+            {/* ── Content ─────────────────────────────────────────────────── */}
+            <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+
+                {status === "loading" && <SkeletonGrid count={8} />}
+
+                {status === "error" && (
+                    <ErrorState message={error ?? undefined} onRetry={reload} />
+                )}
+
+                {status === "success" && filteredItems.length === 0 && (
+                    <EmptyState
+                        icon="🔎"
+                        title={
+                            hasActiveFilters
+                                ? "No items match your search"
+                                : "No listings yet"
+                        }
+                        description={
+                            hasActiveFilters
+                                ? "Try adjusting your search or filters to find what you're looking for."
+                                : "Check back soon — new collectibles are added regularly."
+                        }
+                    />
+                )}
+
+                {status === "success" && filteredItems.length > 0 && (
+                    <>
+                        {/* Results row */}
+                        <div className="mb-4 flex items-center justify-between">
+                            <p className="text-sm text-gray-500">
+                                <span className="font-medium text-gray-900">{filteredItems.length}</span>{" "}
+                                {filteredItems.length === 1 ? "result" : "results"}
+                            </p>
+                        </div>
+
+                        {/* Grid */}
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                            {filteredItems.map((item) => (
+                                <ProductCard
+                                    key={item.id}
+                                    item={item}
+                                    linkState={{
+                                        from: `${window.location.pathname}${window.location.search}`,
+                                    }}
+                                />
+                            ))}
+                        </div>
+                    </>
+                )}
+            </main>
         </div>
     );
 }
