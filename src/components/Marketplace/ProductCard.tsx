@@ -14,7 +14,7 @@ interface ProductCardProps {
 
 const conditionColor: Record<string, string> = {
     Mint: "bg-emerald-100 text-emerald-700",
-    "Near Mint": "bg-teal-100 text-teal-700",
+    NearMint: "bg-teal-100 text-teal-700",
     Excellent: "bg-blue-100 text-blue-700",
     Good: "bg-yellow-100 text-yellow-700",
     Fair: "bg-orange-100 text-orange-700",

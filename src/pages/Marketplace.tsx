@@ -5,9 +5,23 @@ import { fetchMarketplaceItems } from "../api/mockapis.ts";
 import ProductCard from "../components/Marketplace/ProductCard.tsx";
 import {useAsync} from "../hooks/useAsync.ts";
 import SearchBar from "../components/common/SearchBar.tsx";
-import EmptyState from "../components/common/EmptyState.tsx";
+import {EmptyState} from "../components/common/EmptyState.tsx";
+import {ErrorState} from "../components/common/ErrorState.tsx";
+import {Select} from "../components/common/Select.tsx";
+import type {Category, Condition} from "../types";
+import {SkeletonGrid} from "../components/common/SkeletonGrid.tsx";
 
-
+const CONDITIONS: Condition[] = ['Mint', 'Near Mint', 'Good', 'Fair', 'Poor'];
+const CATEGORIES: Category[] = [
+    'Coins',
+    'Stamps',
+    'Trading Cards',
+    'Comics',
+    'Vintage Toys',
+    'Watches',
+    'Vinyl Records',
+    'Sports Memorabilia',
+];
 const MarketplacePage = () => {
     const [params, setParams] = useSearchParams();
     const { data: items, status, error, reload } = useAsync(fetchMarketplaceItems, []);
@@ -73,7 +87,108 @@ const MarketplacePage = () => {
     const hasActiveFilters = query || category !== 'All' || condition !== 'All';
 
     return (
-      <></>
+        <div>
+            <div>
+                <h1>Marketplace</h1>
+                <p>Browse collectibles from sellers around the world.</p>
+            </div>
+
+            <div>
+                <div>
+                    <SearchBar
+                        value={query}
+                        onChange={(v) => updateParam("q", v)}
+                        placeholder="Search by title..."
+                    />
+                </div>
+
+                <div>
+                    <Select
+                        label="Category"
+                        value={category}
+                        onChange={(v) => updateParam("category", v)}
+                        options={[
+                            { label: "All Categories", value: "All" },
+                            ...CATEGORIES.map((c) => ({ label: c, value: c })),
+                        ]}
+                    />
+
+                    <Select
+                        label="Condition"
+                        value={condition}
+                        onChange={(v) => updateParam("condition", v)}
+                        options={[
+                            { label: "All Conditions", value: "All" },
+                            ...CONDITIONS.map((c) => ({ label: c, value: c })),
+                        ]}
+                    />
+
+                    <Select
+                        label="Sort by"
+                        value={sort}
+                        onChange={(v) => updateParam("sort", v)}
+                        options={[
+                            { label: "Newest", value: "newest" },
+                            { label: "Oldest", value: "oldest" },
+                            { label: "Price: Low to High", value: "price-asc" },
+                            { label: "Price: High to Low", value: "price-desc" },
+                        ]}
+                    />
+                </div>
+            </div>
+
+            {status === "loading" && <SkeletonGrid count={8} />}
+
+            {status === "error" && (
+                <ErrorState message={error ?? undefined} onRetry={reload} />
+            )}
+
+            {status === "success" && filteredItems.length === 0 && (
+                <EmptyState
+                    icon="🔎"
+                    title={
+                        hasActiveFilters
+                            ? "No items match your search"
+                            : "No listings yet"
+                    }
+                    description={
+                        hasActiveFilters
+                            ? "Try adjusting your search or filters to find what you're looking for."
+                            : "Check back soon — new collectibles are added regularly."
+                    }
+                    action={
+                        hasActiveFilters
+                            ? {
+                                label: "Clear filters",
+                                onClick: () =>
+                                    setParams(new URLSearchParams(), { replace: true }),
+                            }
+                            : undefined
+                    }
+                />
+            )}
+
+            {status === "success" && filteredItems.length > 0 && (
+                <>
+                    <p>
+                        {filteredItems.length}{" "}
+                        {filteredItems.length === 1 ? "item" : "items"} found
+                    </p>
+
+                    <div>
+                        {filteredItems.map((item) => (
+                            <ProductCard
+                                key={item.id}
+                                item={item}
+                                linkState={{
+                                    from: `${window.location.pathname}${window.location.search}`,
+                                }}
+                            />
+                        ))}
+                    </div>
+                </>
+            )}
+        </div>
     );
 }
 export default MarketplacePage;
