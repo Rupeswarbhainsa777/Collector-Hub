@@ -1,77 +1,79 @@
-import { useState } from "react";
-import products from "../data/marketplace.json";
+import { useSearchParams } from "react-router-dom";
+import { useDebounce } from "../hooks/useDebounce.ts";
+import { useMemo } from "react";
+import { fetchMarketplaceItems } from "../api/mockapis.ts";
+import ProductCard from "../components/Marketplace/ProductCard.tsx";
+import {useAsync} from "../hooks/useAsync.ts";
 import SearchBar from "../components/common/SearchBar.tsx";
+import EmptyState from "../components/common/EmptyState.tsx";
 
-const Marketplace = () => {
-    const [search, setSearch] = useState("");
 
-    const filteredProducts = products.filter((item) =>
-        item.title.toLowerCase().includes(search.toLowerCase())
-    );
+const MarketplacePage = () => {
+    const [params, setParams] = useSearchParams();
+    const { data: items, status, error, reload } = useAsync(fetchMarketplaceItems, []);
+
+    const query = params.get('q') ?? '';
+    const category = params.get('category') ?? 'All';
+    const condition = params.get('condition') ?? 'All';
+    const sort = params.get('sort') ?? 'newest';
+
+    const debouncedQuery = useDebounce(query, 300);
+
+    const updateParam = (key: string, value: string) => {
+        const next = new URLSearchParams(params);
+        if (!value || value === 'All') {
+            next.delete(key);
+        } else {
+            next.set(key, value);
+        }
+        setParams(next, { replace: true });
+    };
+
+    const filteredItems = useMemo(() => {
+        if (!items) {
+            return [];
+        }
+
+        let result = items.filter((item) => {
+            const matchesQuery = item.title
+                .toLowerCase()
+                .includes(debouncedQuery.toLowerCase().trim());
+
+            const matchesCategory =
+                category === "All" || item.category === category;
+
+            const matchesCondition =
+                condition === "All" || item.condition === condition;
+
+            return matchesQuery && matchesCategory && matchesCondition;
+        });
+
+        result = [...result].sort((a, b) => {
+            if (sort === "price-asc") {
+                return a.price - b.price;
+            } else if (sort === "price-desc") {
+                return b.price - a.price;
+            } else if (sort === "oldest") {
+                return (
+                    new Date(a.createdAt).getTime() -
+                    new Date(b.createdAt).getTime()
+                );
+            } else {
+                // newest (default)
+                return (
+                    new Date(b.createdAt).getTime() -
+                    new Date(a.createdAt).getTime()
+                );
+            }
+        });
+
+        return result;
+    }, [items, debouncedQuery, category, condition, sort]);
+
+    const hasActiveFilters = query || category !== 'All' || condition !== 'All';
 
     return (
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between pb-6 mb-8 border-b border-gray-200">
-                <div>
-                    <h1 className="text-xl font-semibold text-gray-900 tracking-tight">
-                        Marketplace
-                    </h1>
-                    <p className="text-xs text-gray-500 mt-1">
-                        Find and buy high-quality collectibles from sellers in the community.
-                    </p>
-                </div>
-            </div>
-
-
-            <div className="mb-8">
-                <SearchBar
-                    value={search}
-                    onChange={setSearch}
-                    placeholder="Search products..."
-                />
-            </div>
-
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {filteredProducts.map((item) => (
-                    <div
-                        key={item.id}
-                        className="bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col hover:border-gray-400 hover:shadow-xs transition-all duration-150"
-                    >
-
-                        <div className="relative aspect-video bg-gray-50 border-b border-gray-100 flex items-center justify-center overflow-hidden">
-                            <img
-                                src={item.image}
-                                alt={item.title}
-                                className="w-full h-full object-cover animate-fade-in"
-                                loading="lazy"
-                            />
-                        </div>
-
-
-                        <div className="p-4 flex flex-col flex-1">
-                            <h2 className="text-sm font-semibold text-gray-900 line-clamp-2 leading-snug">
-                                {item.title}
-                            </h2>
-
-                            <div className="flex items-center justify-between mt-5 pt-3 border-t border-gray-100">
-                                <div>
-                                    <span className="block text-[10px] font-medium text-gray-400 uppercase tracking-wider">Price</span>
-                                    <p className="text-sm font-bold text-gray-900">
-                                        ₹{item.price.toLocaleString("en-IN")}
-                                    </p>
-                                </div>
-                                <button className="inline-flex items-center justify-center bg-gray-900 hover:bg-black text-white text-xs font-semibold px-3.5 py-1.5 rounded-md transition-colors cursor-pointer">
-                                    View Details
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
+      <></>
     );
-};
-
-export default Marketplace;
+}
+export default MarketplacePage;

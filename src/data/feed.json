@@ -1,0 +1,262 @@
+[
+  {
+    "id": "post-1",
+    "user": {
+      "name": "Isabella Cruz",
+      "avatar": "https://i.pravatar.cc/100?img=1"
+    },
+    "image": "https://picsum.photos/seed/post1/500/400",
+    "caption": "New arrival from an estate sale.",
+    "category": "Stamps",
+    "likes": 61,
+    "comments": 36,
+    "createdAt": "2026-05-15T03:14:36.388658"
+  },
+  {
+    "id": "post-2",
+    "user": {
+      "name": "Sam Okafor",
+      "avatar": "https://i.pravatar.cc/100?img=2"
+    },
+    "image": "https://picsum.photos/seed/post2/500/400",
+    "caption": "My grandfather's collection, passing it on.",
+    "category": "Coins",
+    "likes": 133,
+    "comments": 13,
+    "createdAt": "2026-01-26T23:14:36.388677"
+  },
+  {
+    "id": "post-3",
+    "user": {
+      "name": "Sam Okafor",
+      "avatar": "https://i.pravatar.cc/100?img=3"
+    },
+    "image": "https://picsum.photos/seed/post3/500/400",
+    "caption": "Finally completed my set after 3 years of hunting.",
+    "category": "Watches",
+    "likes": 330,
+    "comments": 19,
+    "createdAt": "2026-03-22T11:14:36.388685"
+  },
+  {
+    "id": "post-4",
+    "user": {
+      "name": "Omar Haddad",
+      "avatar": "https://i.pravatar.cc/100?img=4"
+    },
+    "image": null,
+    "caption": "Found this at a flea market, can't believe the price.",
+    "category": "Stamps",
+    "likes": 37,
+    "comments": 34,
+    "createdAt": "2026-05-24T05:14:36.388692"
+  },
+  {
+    "id": "post-5",
+    "user": {
+      "name": "Nina Petrova",
+      "avatar": "https://i.pravatar.cc/100?img=5"
+    },
+    "image": null,
+    "caption": "Found this at a flea market, can't believe the price.",
+    "category": "Vintage Toys",
+    "likes": 125,
+    "comments": 23,
+    "createdAt": "2026-05-06T16:14:36.388699"
+  },
+  {
+    "id": "post-6",
+    "user": {
+      "name": "Ravi Shankar",
+      "avatar": "https://i.pravatar.cc/100?img=6"
+    },
+    "image": "https://picsum.photos/seed/post6/500/400",
+    "caption": "Just added this beauty to my collection!",
+    "category": "Sports Memorabilia",
+    "likes": 283,
+    "comments": 19,
+    "createdAt": "2026-01-29T18:14:36.388706"
+  },
+  {
+    "id": "post-7",
+    "user": {
+      "name": "Maya Patel",
+      "avatar": "https://i.pravatar.cc/100?img=7"
+    },
+    "image": "https://picsum.photos/seed/post7/500/400",
+    "caption": "Finally completed my set after 3 years of hunting.",
+    "category": "Trading Cards",
+    "likes": 139,
+    "comments": 18,
+    "createdAt": "2026-02-13T15:14:36.388712"
+  },
+  {
+    "id": "post-8",
+    "user": {
+      "name": "Ravi Shankar",
+      "avatar": "https://i.pravatar.cc/100?img=8"
+    },
+    "image": "https://picsum.photos/seed/post8/500/400",
+    "caption": "This one took me forever to track down.",
+    "category": "Watches",
+    "likes": 128,
+    "comments": 3,
+    "createdAt": "2026-06-24T01:14:36.388725"
+  },
+  {
+    "id": "post-9",
+    "user": {
+      "name": "Jordan Lee",
+      "avatar": "https://i.pravatar.cc/100?img=9"
+    },
+    "image": "https://picsum.photos/seed/post9/500/400",
+    "caption": "Just added this beauty to my collection!",
+    "category": "Vinyl Records",
+    "likes": 170,
+    "comments": 8,
+    "createdAt": "2026-02-04T13:14:36.388731"
+  },
+  {
+    "id": "post-10",
+    "user": {
+      "name": "Hana Sato",
+      "avatar": "https://i.pravatar.cc/100?img=10"
+    },
+    "image": "https://picsum.photos/seed/post10/500/400",
+    "caption": "New arrival from an estate sale.",
+    "category": "Trading Cards",
+    "likes": 287,
+    "comments": 0,
+    "createdAt": "2026-06-19T19:14:36.388742"
+  },
+  {
+    "id": "post-11",
+    "user": {
+      "name": "Nina Petrova",
+      "avatar": "https://i.pravatar.cc/100?img=11"
+    },
+    "image": "https://picsum.photos/seed/post11/500/400",
+    "caption": "Finally completed my set after 3 years of hunting.",
+    "category": "Trading Cards",
+    "likes": 220,
+    "comments": 8,
+    "createdAt": "2026-07-07T12:14:36.388748"
+  },
+  {
+    "id": "post-12",
+    "user": {
+      "name": "Jordan Lee",
+      "avatar": "https://i.pravatar.cc/100?img=12"
+    },
+    "image": "https://picsum.photos/seed/post12/500/400",
+    "caption": "My grandfather's collection, passing it on.",
+    "category": "Watches",
+    "likes": 107,
+    "comments": 15,
+    "createdAt": "2026-01-28T18:14:36.388756"
+  },
+  {
+    "id": "post-13",
+    "user": {
+      "name": "Sam Okafor",
+      "avatar": "https://i.pravatar.cc/100?img=13"
+    },
+    "image": "https://picsum.photos/seed/post13/500/400",
+    "caption": "Finally completed my set after 3 years of hunting.",
+    "category": "Watches",
+    "likes": 121,
+    "comments": 10,
+    "createdAt": "2026-06-02T08:14:36.388762"
+  },
+  {
+    "id": "post-14",
+    "user": {
+      "name": "Nina Petrova",
+      "avatar": "https://i.pravatar.cc/100?img=14"
+    },
+    "image": "https://picsum.photos/seed/post14/500/400",
+    "caption": "New arrival from an estate sale.",
+    "category": "Coins",
+    "likes": 127,
+    "comments": 17,
+    "createdAt": "2026-06-06T23:14:36.388769"
+  },
+  {
+    "id": "post-15",
+    "user": {
+      "name": "Jordan Lee",
+      "avatar": "https://i.pravatar.cc/100?img=15"
+    },
+    "image": "https://picsum.photos/seed/post15/500/400",
+    "caption": "This one took me forever to track down.",
+    "category": "Stamps",
+    "likes": 113,
+    "comments": 12,
+    "createdAt": "2026-03-22T10:14:36.388775"
+  },
+  {
+    "id": "post-16",
+    "user": {
+      "name": "Isabella Cruz",
+      "avatar": "https://i.pravatar.cc/100?img=16"
+    },
+    "image": "https://picsum.photos/seed/post16/500/400",
+    "caption": "Anyone else collect these? Would love to trade.",
+    "category": "Vintage Toys",
+    "likes": 12,
+    "comments": 42,
+    "createdAt": "2026-05-29T09:14:36.388782"
+  },
+  {
+    "id": "post-17",
+    "user": {
+      "name": "Maya Patel",
+      "avatar": "https://i.pravatar.cc/100?img=17"
+    },
+    "image": "https://picsum.photos/seed/post17/500/400",
+    "caption": "Restored this piece over the weekend, so happy with it.",
+    "category": "Watches",
+    "likes": 179,
+    "comments": 41,
+    "createdAt": "2026-03-09T09:14:36.388788"
+  },
+  {
+    "id": "post-18",
+    "user": {
+      "name": "Maya Patel",
+      "avatar": "https://i.pravatar.cc/100?img=18"
+    },
+    "image": "https://picsum.photos/seed/post18/500/400",
+    "caption": "Restored this piece over the weekend, so happy with it.",
+    "category": "Watches",
+    "likes": 91,
+    "comments": 37,
+    "createdAt": "2026-05-11T20:14:36.388794"
+  },
+  {
+    "id": "post-19",
+    "user": {
+      "name": "Nina Petrova",
+      "avatar": "https://i.pravatar.cc/100?img=19"
+    },
+    "image": "https://picsum.photos/seed/post19/500/400",
+    "caption": "My grandfather's collection, passing it on.",
+    "category": "Stamps",
+    "likes": 223,
+    "comments": 38,
+    "createdAt": "2026-03-09T18:14:36.388801"
+  },
+  {
+    "id": "post-20",
+    "user": {
+      "name": "Isabella Cruz",
+      "avatar": "https://i.pravatar.cc/100?img=20"
+    },
+    "image": "https://picsum.photos/seed/post20/500/400",
+    "caption": "Restored this piece over the weekend, so happy with it.",
+    "category": "Vinyl Records",
+    "likes": 22,
+    "comments": 27,
+    "createdAt": "2026-07-17T05:14:36.388807"
+  }
+]

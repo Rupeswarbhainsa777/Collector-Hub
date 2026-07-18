@@ -16,9 +16,9 @@ function App() {
             <Navbar />
 
             <Routes>
-                <Route path="/" element={<MarketplacePage />} />
+                <Route path="/marketplace" element={<MarketplacePage />} />
                 <Route path="/community" element={<Community />} />
-                <Route path="/product" element={<ProductDetails />} />
+                <Route path="/marketplace/:id" element={<ProductDetails />} />
                 <Route path="/post" element={<PostDetails />} />
                 <Route path="/collection" element={<MyCollection />} />
                 <Route path="*" element={<PageNotFound />} />

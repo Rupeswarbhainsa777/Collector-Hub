@@ -6,7 +6,7 @@ import {
 } from "react-icons/fa";
 
 const navItems = [
-    { to: "/", label: "Marketplace" },
+    { to: "/marketplace", label: "Marketplace" },
     { to: "/community", label: "Community" },
     { to: "/product", label: "Product" },
     { to: "/post", label: "Post" },
