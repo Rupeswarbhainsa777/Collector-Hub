@@ -126,7 +126,12 @@ const CommunityPages = () => {
                 </div>
             )}
 
-
+            {activePost && (
+                <PostDetailModal
+                    post={activePost}
+                    onClose={() => setActivePost(null)}
+                />
+            )}
         </div>
     );
 }
