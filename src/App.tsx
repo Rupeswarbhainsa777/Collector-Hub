@@ -9,6 +9,7 @@ import PageNotFound from "./pages/NotFound";
 import MyCollection from "./pages/MyCollection";
 import { CollectionProvider } from "./context/CollectionContext.tsx";
 import { FeedInteractionsProvider } from "./context/FeedInteractionsProvider.tsx";
+import Landing from "./pages/Landing.tsx";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
             <FeedInteractionsProvider>
                 <Layout>
                     <Routes>
+                        <Route path="/" element={<Landing />} />
                         <Route path="/marketplace" element={<MarketplacePage />} />
                         <Route path="/community" element={<Community />} />
                         <Route path="/collection" element={<MyCollection />} />
