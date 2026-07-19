@@ -74,10 +74,10 @@ const MyCollection = () =>{
 
             <div className="border-b border-gray-200 bg-white">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between py-6">
+                    <div className="flex items-center justify-between py-4 sm:py-6 gap-3">
                         <div>
-                            <h1 className="text-xl font-semibold text-gray-900">My Collection</h1>
-                            <p className="mt-0.5 text-sm text-gray-500">
+                            <h1 className="text-lg sm:text-xl font-semibold text-gray-900">My Collection</h1>
+                            <p className="mt-0.5 text-xs sm:text-sm text-gray-500">
                                 Track what you own, want, and are selling.
                             </p>
                         </div>
@@ -85,7 +85,7 @@ const MyCollection = () =>{
                         {tabItems.length === 0 && (
                             <Link
                                 to="/marketplace"
-                                className="rounded-full bg-gray-900 px-5 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-gray-800 active:scale-[0.97]"
+                                className="shrink-0 rounded-full bg-gray-900 px-4 py-2 text-xs sm:text-sm font-medium text-white transition-all duration-200 hover:bg-gray-800 active:scale-[0.97]"
                             >
                                 Browse Marketplace →
                             </Link>
@@ -134,9 +134,9 @@ const MyCollection = () =>{
 
             <div className="border-b border-gray-200 bg-white">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-wrap items-center gap-2 py-3">
+                    <div className="flex flex-col gap-2 py-3 sm:flex-row sm:flex-wrap sm:items-center">
 
-                        <div className="flex-1 min-w-[180px] max-w-xs">
+                        <div className="w-full sm:flex-1 sm:min-w-[180px] sm:max-w-xs">
                             <SearchBar
                                 value={query}
                                 onChange={(v) => updateParam("q", v)}
@@ -148,7 +148,7 @@ const MyCollection = () =>{
                         <div className="hidden h-5 w-px bg-gray-200 sm:block" />
 
 
-                        <div className="flex flex-wrap items-center gap-2">
+                        <div className="flex items-center gap-2 overflow-x-auto pb-0.5 sm:pb-0 sm:flex-wrap">
                             <Select
                                 label="Category"
                                 value={category}
@@ -169,22 +169,21 @@ const MyCollection = () =>{
                                     { label: "Value: High to Low", value: "value-desc" },
                                 ]}
                             />
+
+                            {hasActiveFilters && (
+                                <button
+                                    onClick={() => {
+                                        const next = new URLSearchParams();
+                                        next.set("tab", tab);
+                                        setParams(next, { replace: true });
+                                    }}
+                                    className="shrink-0 flex items-center gap-1.5 rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900"
+                                >
+                                    Clear
+                                    <span className="flex h-4 w-4 items-center justify-center rounded-full bg-gray-100 text-[10px] text-gray-500">✕</span>
+                                </button>
+                            )}
                         </div>
-
-
-                        {hasActiveFilters && (
-                            <button
-                                onClick={() => {
-                                    const next = new URLSearchParams();
-                                    next.set("tab", tab);
-                                    setParams(next, { replace: true });
-                                }}
-                                className="ml-auto flex items-center gap-1.5 rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900"
-                            >
-                                Clear filters
-                                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-gray-100 text-[10px] text-gray-500">✕</span>
-                            </button>
-                        )}
                     </div>
                 </div>
             </div>
@@ -230,7 +229,7 @@ const MyCollection = () =>{
                         </div>
 
 
-                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-4">
                             {filteredItems.map((item) => (
                                 <CollectionItemCard key={item.id} item={item} />
                             ))}

@@ -49,9 +49,9 @@ const CommunityPages = () => {
     return (
         <div className="min-h-screen bg-gray-50">
 
-            <div className="sticky top-0 z-30 border-b border-gray-200 bg-white/90 shadow-sm backdrop-blur-md">
-                <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 py-3 sm:px-6">
-                    <div className="flex-1 min-w-[180px]">
+            <div className="sticky top-[57px] md:top-0 z-30 border-b border-gray-200 bg-white/90 shadow-sm backdrop-blur-md">
+                <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 sm:px-6">
+                    <div className="w-full sm:flex-1 sm:min-w-[180px]">
                         <SearchBar
                             value={query}
                             onChange={(v) => updateParam("q", v)}
@@ -59,38 +59,40 @@ const CommunityPages = () => {
                         />
                     </div>
 
-                    <Select
-                        label="Category"
-                        value={category}
-                        onChange={(v) => updateParam("category", v)}
-                        options={[
-                            { label: "All Categories", value: "All" },
-                            ...CATEGORIES.map((c) => ({
-                                label: c,
-                                value: c,
-                            })),
-                        ]}
-                    />
+                    <div className="flex items-center gap-2 overflow-x-auto pb-0.5 sm:pb-0">
+                        <Select
+                            label="Category"
+                            value={category}
+                            onChange={(v) => updateParam("category", v)}
+                            options={[
+                                { label: "All Categories", value: "All" },
+                                ...CATEGORIES.map((c) => ({
+                                    label: c,
+                                    value: c,
+                                })),
+                            ]}
+                        />
 
-                    {hasActiveFilters && (
-                        <button
-                            onClick={() =>
-                                setParams(new URLSearchParams(), {
-                                    replace: true,
-                                })
-                            }
-                            className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-600 transition-colors hover:bg-indigo-100"
-                        >
-                            ✕ Clear filters
-                        </button>
-                    )}
+                        {hasActiveFilters && (
+                            <button
+                                onClick={() =>
+                                    setParams(new URLSearchParams(), {
+                                        replace: true,
+                                    })
+                                }
+                                className="shrink-0 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-600 transition-colors hover:bg-indigo-100"
+                            >
+                                ✕ Clear
+                            </button>
+                        )}
 
-                    {status === "success" && (
-                        <span className="ml-auto text-xs font-medium text-gray-400">
-                            {filteredPosts.length} post
-                            {filteredPosts.length !== 1 ? "s" : ""}
-                        </span>
-                    )}
+                        {status === "success" && (
+                            <span className="ml-auto shrink-0 text-xs font-medium text-gray-400">
+                                {filteredPosts.length} post
+                                {filteredPosts.length !== 1 ? "s" : ""}
+                            </span>
+                        )}
+                    </div>
                 </div>
             </div>
 
@@ -132,7 +134,7 @@ const CommunityPages = () => {
                 )}
 
                 {status === "success" && filteredPosts.length > 0 && (
-                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         {filteredPosts.map((post) => (
                             <PostCard
                                 key={post.id}

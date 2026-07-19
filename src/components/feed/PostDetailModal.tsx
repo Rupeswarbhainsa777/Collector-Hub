@@ -33,13 +33,13 @@ const PostDetailModal = ({ post, onClose }: PostDetailModalProps) => {
             onClick={onClose}
             role="dialog"
             aria-modal="true"
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/70 sm:p-4 backdrop-blur-sm"
         >
 
             <div
                 onClick={(e) => e.stopPropagation()}
-                className="relative flex w-full max-w-4xl overflow-hidden rounded-3xl bg-white shadow-2xl"
-                style={{ maxHeight: '90vh' }}
+                style={{ maxHeight: '100dvh' }}
+                className="relative flex flex-col w-full sm:flex-row sm:max-w-4xl overflow-hidden sm:rounded-3xl sm:max-h-[90vh] bg-white shadow-2xl"
             >
 
 

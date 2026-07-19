@@ -35,18 +35,18 @@ const Landing = () => {
         <div className="min-h-screen bg-white flex flex-col">
 
 
-            <section className="flex flex-col items-center justify-center text-center px-6 pt-24 pb-20">
-                <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight max-w-xl">
+            <section className="flex flex-col items-center justify-center text-center px-5 pt-16 pb-14 sm:px-6 sm:pt-24 sm:pb-20">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight max-w-xl">
                     The home for serious collectors.
                 </h1>
-                <p className="mt-5 text-base text-gray-500 leading-relaxed max-w-md">
+                <p className="mt-4 sm:mt-5 text-sm sm:text-base text-gray-500 leading-relaxed max-w-md">
                     CollectorHub brings your marketplace, community, and personal
                     collection together in one clean, focused space.
                 </p>
                 <button
                     id="hero-cta"
                     onClick={() => navigate("/marketplace")}
-                    className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gray-900 text-white text-sm font-semibold hover:bg-gray-700 active:scale-95 transition-all cursor-pointer"
+                    className="mt-6 sm:mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gray-900 text-white text-sm font-semibold hover:bg-gray-700 active:scale-95 transition-all cursor-pointer"
                 >
                     Browse the Marketplace
                     <FiArrowUpRight size={15} />
@@ -57,12 +57,12 @@ const Landing = () => {
             <div className="mx-8 border-t border-gray-100" />
 
 
-            <section className="px-8 pt-14 pb-20">
+            <section className="px-4 pt-10 pb-16 sm:px-8 sm:pt-14 sm:pb-20">
                 <div className="max-w-3xl mx-auto">
-                    <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-7">
+                    <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-5 sm:mb-7">
                         What's inside
                     </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                         {PAGES.map((page) => (
                             <button
                                 key={page.id}
