@@ -223,19 +223,7 @@ Collection state and feed interactions (likes/saves) live in React Context but a
 
 ---
 
-## Known Limitations
 
-> These are known gaps relative to the full assignment specification:
-
-- **No real backend** — Data is loaded from static JSON files in `/public/data/`
-- **No authentication** — Collection state is shared across all users of the same browser
-- **Comments are display-only** — `post.comments` shows a count but there is no comment input or list
-- **No infinite scroll** — All listings are loaded in a single fetch
-- **No dark mode** — Light mode only
-- **No grid/list toggle** — Cards-only layout
-- **Mobile sidebar** — The collapsible sidebar has no mobile drawer/hamburger pattern; use the collapsed (icon-only) state on smaller screens
-
----
 
 ## License
 
