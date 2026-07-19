@@ -5,7 +5,11 @@ import {formatDate, formatPrice} from "../../utils/formatters.ts";
 import {Badge} from "../common/Badge.tsx";
 
 
-const ALL_COLLECTIONS: CollectionName[] = ['Owned', 'Wishlist', 'Selling'];
+const MOVE_TARGETS: Record<CollectionName, CollectionName[]> = {
+    Owned:    ['Selling'],
+    Wishlist: ['Owned'],
+    Selling:  ['Owned'],
+};
 
 interface CollectionItemCardProps {
     item: CollectionItem;
@@ -19,12 +23,12 @@ const collectionIcon: Record<CollectionName, string> = {
 
 const CollectionItemCard = ({ item }: CollectionItemCardProps) => {
     const { removeItem, moveItem } = useCollection();
-    const otherCollections = ALL_COLLECTIONS.filter((c) => c !== item.collection);
+    const otherCollections = MOVE_TARGETS[item.collection];
 
     return (
         <div className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
 
-            {/* ── Image ──────────────────────────────────────────────────── */}
+
             <div className="relative h-48 w-full overflow-hidden bg-slate-100">
                 <Images
                     src={item.image}
@@ -32,30 +36,30 @@ const CollectionItemCard = ({ item }: CollectionItemCardProps) => {
                     className="h-full w-full transition-transform duration-500 group-hover:scale-105"
                 />
 
-                {/* Collection badge overlay */}
+
                 <span className="absolute left-2 top-2 flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-0.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur-sm">
                     {collectionIcon[item.collection]} {item.collection}
                 </span>
             </div>
 
-            {/* ── Body ───────────────────────────────────────────────────── */}
+
             <div className="flex flex-1 flex-col gap-2 p-4">
 
-                {/* Category + Date */}
+
                 <div className="flex flex-wrap items-center justify-between gap-1.5">
                     <Badge>{item.category}</Badge>
                     <span className="text-xs text-slate-400">{formatDate(item.dateAdded)}</span>
                 </div>
 
-                {/* Title */}
+
                 <h3 className="line-clamp-2 text-sm font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
                     {item.title}
                 </h3>
 
-                {/* Spacer */}
+
                 <div className="flex-1" />
 
-                {/* Value + Actions */}
+
                 <div className="border-t border-slate-100 pt-3">
                     <p className="mb-2.5 text-xs text-slate-500">
                         Est. value:{" "}
@@ -65,7 +69,7 @@ const CollectionItemCard = ({ item }: CollectionItemCardProps) => {
                     </p>
 
                     <div className="flex items-center gap-2">
-                        {/* Move select */}
+
                         <select
                             aria-label={`Move ${item.title}`}
                             value=""
@@ -81,7 +85,7 @@ const CollectionItemCard = ({ item }: CollectionItemCardProps) => {
                             ))}
                         </select>
 
-                        {/* Remove button */}
+
                         <button
                             onClick={() => removeItem(item.id)}
                             title="Remove from collection"
@@ -95,4 +99,4 @@ const CollectionItemCard = ({ item }: CollectionItemCardProps) => {
         </div>
     );
 }
-export default CollectionItemCard;
+export default CollectionItemCard;

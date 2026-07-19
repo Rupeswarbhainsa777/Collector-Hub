@@ -145,7 +145,7 @@ const MyCollection = () =>{
             <div className="border-b border-gray-200 bg-white">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-wrap items-center gap-2 py-3">
-                        {/* Search */}
+
                         <div className="flex-1 min-w-[180px] max-w-xs">
                             <SearchBar
                                 value={query}
@@ -154,10 +154,10 @@ const MyCollection = () =>{
                             />
                         </div>
 
-                        {/* Divider */}
+
                         <div className="hidden h-5 w-px bg-gray-200 sm:block" />
 
-                        {/* Filters */}
+
                         <div className="flex flex-wrap items-center gap-2">
                             <Select
                                 label="Category"
