@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { useDebounce } from "../hooks/useDebounce.ts";
-import { useMemo } from "react";
+import {useMemo, useState} from "react";
 import { fetchMarketplaceItems } from "../api/mockapis.ts";
 import ProductCard from "../components/Marketplace/ProductCard.tsx";
 import { useAsync } from "../hooks/useAsync.ts";
@@ -8,8 +8,9 @@ import SearchBar from "../components/common/SearchBar.tsx";
 import { EmptyState } from "../components/common/EmptyState.tsx";
 import { ErrorState } from "../components/common/ErrorState.tsx";
 import { Select } from "../components/common/Select.tsx";
-import type { Category, Condition } from "../types";
+import type {Category, Condition, MarketplaceItem} from "../types";
 import { SkeletonGrid } from "../components/common/SkeletonGrid.tsx";
+import ProductDetailsModal from "../components/Marketplace/ProductDetailsModal.tsx";
 
 const CONDITIONS: Condition[] = ['Mint', 'Near Mint', 'Good', 'Fair', 'Poor'];
 const CATEGORIES: Category[] = [
@@ -30,6 +31,9 @@ const MarketplacePage = () => {
     const category = params.get('category') ?? 'All';
     const condition = params.get('condition') ?? 'All';
     const sort = params.get('sort') ?? 'newest';
+
+    const [selectedItem, setSelectedItem] =
+        useState<MarketplaceItem | null>(null);
 
     const debouncedQuery = useDebounce(query, 300);
 
@@ -205,18 +209,28 @@ const MarketplacePage = () => {
 
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             {filteredItems.map((item) => (
-                                <ProductCard
+                                <div
                                     key={item.id}
-                                    item={item}
-                                    linkState={{
-                                        from: `${window.location.pathname}${window.location.search}`,
-                                    }}
-                                />
+                                    onClick={() => setSelectedItem(item)}
+                                    className="cursor-pointer"
+                                >
+                                    <ProductCard
+                                        item={item}
+                                        linkState={{
+                                            from: `${window.location.pathname}${window.location.search}`,
+                                        }}
+                                    />
+                                </div>
                             ))}
                         </div>
+
                     </>
                 )}
             </main>
+            <ProductDetailsModal
+                item={selectedItem}
+                onClose={() => setSelectedItem(null)}
+            />
         </div>
     );
 }
