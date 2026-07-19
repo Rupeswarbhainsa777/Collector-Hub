@@ -59,7 +59,7 @@ const CommunityPages = () => {
     return (
         <div className="min-h-screen bg-gray-50">
 
-            <div className="sticky top-16 z-30 border-b border-gray-200 bg-white/90 shadow-sm backdrop-blur-md">
+            <div className="sticky top-0 z-30 border-b border-gray-200 bg-white/90 shadow-sm backdrop-blur-md">
                 <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 py-3 sm:px-6">
                     <div className="flex-1 min-w-[180px]">
                         <SearchBar
