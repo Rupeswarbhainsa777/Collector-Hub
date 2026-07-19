@@ -84,7 +84,6 @@ body {
   display: flex;
   flex-direction: column;
   z-index: 50;
-  overflow: hidden;
   transition: width var(--sidebar-transition);
   box-shadow: 1px 0 0 0 var(--sidebar-border), 4px 0 16px -4px rgba(0, 0, 0, 0.04);
 }
