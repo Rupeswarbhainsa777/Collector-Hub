@@ -1,9 +1,10 @@
-import type {FeedPost} from "../../types";
-import {useFeedInteractions} from "../../context/FeedInteractionsProvider.tsx";
-import {Badge} from "../common/Badge.tsx";
-import {timeAgo} from "../../utils/formatters.ts";
-import {useState} from "react";
+import { useState } from "react";
+import type { FeedPost } from "../../types";
+
+import { Badge } from "../common/Badge";
+import { timeAgo } from "../../utils/formatters";
 import Images from "../common/Images.tsx";
+import {useFeedInteractions} from "../../context/FeedInteractionsProvider.tsx";
 
 
 interface PostCardProps {
@@ -11,14 +12,14 @@ interface PostCardProps {
     onOpen: (post: FeedPost) => void;
 }
 
-
-const PostCard =({ post, onOpen }: PostCardProps)=>{
-
+const PostCard=({ post, onOpen }: PostCardProps)=> {
     const { isLiked, isSaved, toggleLike, toggleSave } = useFeedInteractions();
     const liked = isLiked(post.id);
     const saved = isSaved(post.id);
+
     const [avatarFailed, setAvatarFailed] = useState(false);
     const likeCount = post.likes + (liked ? 1 : 0);
+
     return (
         <article>
             <button onClick={() => onOpen(post)}>
@@ -29,9 +30,7 @@ const PostCard =({ post, onOpen }: PostCardProps)=>{
                         onError={() => setAvatarFailed(true)}
                     />
                 ) : (
-                    <div>
-                        {post.user.name.charAt(0)}
-                    </div>
+                    <div>{post.user.name.charAt(0)}</div>
                 )}
 
                 <div>
@@ -57,11 +56,15 @@ const PostCard =({ post, onOpen }: PostCardProps)=>{
                 <div>
                     <div>
                         <button onClick={() => toggleLike(post.id)}>
-                            <span>{liked ? "❤️" : "🤍"}</span> {likeCount}
+                            <span aria-hidden="true">{liked ? "❤️" : "🤍"}</span>
+                            {" "}
+                            {likeCount}
                         </button>
 
                         <button onClick={() => onOpen(post)}>
-                            <span>💬</span> {post.comments}
+                            <span aria-hidden="true">💬</span>
+                            {" "}
+                            {post.comments}
                         </button>
                     </div>
 
@@ -69,11 +72,12 @@ const PostCard =({ post, onOpen }: PostCardProps)=>{
                         onClick={() => toggleSave(post.id)}
                         title={saved ? "Saved" : "Save post"}
                     >
-                        <span>{saved ? "🔖" : "📑"}</span>
+                        <span aria-hidden="true">{saved ? "🔖" : "📑"}</span>
                     </button>
                 </div>
             </div>
         </article>
     );
 }
+
 export default PostCard;

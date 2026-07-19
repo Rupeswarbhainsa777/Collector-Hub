@@ -10,6 +10,7 @@ import {ErrorState} from "../components/common/ErrorState.tsx";
 import {SkeletonGrid} from "../components/common/SkeletonGrid.tsx";
 import {Select} from "../components/common/Select.tsx";
 import SearchBar from "../components/common/SearchBar.tsx";
+import PostDetailModal from "../components/feed/PostDetailModal.tsx";
 
 const CATEGORIES: Category[] = [
     'Coins',
@@ -118,7 +119,7 @@ const CommunityPages = () => {
                 <div>
                     {filteredPosts.map((post) => (
                         <PostCard
-                            key={post.id}
+                            // key={post.id}
                             post={post}
                             onOpen={setActivePost}
                         />
