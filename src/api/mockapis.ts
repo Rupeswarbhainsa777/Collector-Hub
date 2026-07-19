@@ -7,7 +7,7 @@ async function apiFetch<T>(path: string): Promise<T> {
     if (!res.ok) {
         throw new Error(`Request failed: ${res.status} ${res.statusText}`);
     }
-    return res.json() as Promise<T>;
+    return await res.json() as Promise<T>;
 }
 
 export async function fetchMarketplaceItems(): Promise<MarketplaceItem[]> {

@@ -6,9 +6,9 @@ import {Badge} from "../common/Badge.tsx";
 
 
 const MOVE_TARGETS: Record<CollectionName, CollectionName[]> = {
-    Owned:    ['Wishlist', 'Selling'],
-    Wishlist: ['Owned', 'Selling'],
-    Selling:  ['Owned', 'Wishlist'],
+    Owned:    ['Selling'],
+    Wishlist: ['Owned', ],
+    Selling:  ['Owned', ],
 };
 
 interface CollectionItemCardProps {
