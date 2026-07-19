@@ -58,45 +58,6 @@ const CommunityPages = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            <div className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-700 px-6 py-14 text-center shadow-lg">
-                <div className="pointer-events-none absolute -top-10 -left-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-                <div className="pointer-events-none absolute -bottom-10 -right-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-
-                <div className="relative z-10 mx-auto max-w-2xl">
-                    <span className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white/90 backdrop-blur-sm">
-                        🌟 Collector Community
-                    </span>
-
-                    <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-                        Community Feed
-                    </h1>
-
-                    <p className="mt-3 text-lg font-medium text-indigo-100">
-                        See what fellow collectors are sharing &amp; discover rare
-                        finds.
-                    </p>
-
-                    <div className="mt-6 flex flex-wrap justify-center gap-3">
-                        {[
-                            { label: "Active Members", value: "12.4K" },
-                            { label: "Posts This Week", value: "3.2K" },
-                            { label: "Categories", value: "8" },
-                        ].map(({ label, value }) => (
-                            <div
-                                key={label}
-                                className="flex flex-col items-center rounded-2xl bg-white/15 px-5 py-2.5 backdrop-blur-sm"
-                            >
-                                <span className="text-xl font-bold text-white">
-                                    {value}
-                                </span>
-                                <span className="text-xs font-medium text-indigo-100">
-                                    {label}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
 
             <div className="sticky top-16 z-30 border-b border-gray-200 bg-white/90 shadow-sm backdrop-blur-md">
                 <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 py-3 sm:px-6">
