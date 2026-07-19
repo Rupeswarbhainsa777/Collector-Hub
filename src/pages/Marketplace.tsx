@@ -89,7 +89,7 @@ const MarketplacePage = () => {
     return (
         <div className="min-h-screen bg-gray-50">
 
-            {/* ── Page Header ─────────────────────────────────────────────── */}
+
             <div className="border-b border-gray-200 bg-white">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between py-6">
@@ -105,7 +105,7 @@ const MarketplacePage = () => {
                 </div>
             </div>
 
-            {/* ── Toolbar ─────────────────────────────────────────────────── */}
+
             <div className="border-b border-gray-200 bg-white">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-wrap items-center gap-2 py-3">
@@ -118,10 +118,9 @@ const MarketplacePage = () => {
                             />
                         </div>
 
-                        {/* Divider */}
+
                         <div className="hidden h-5 w-px bg-gray-200 sm:block" />
 
-                        {/* Filters inline */}
                         <div className="flex flex-wrap items-center gap-2">
                             <Select
                                 label="Category"
@@ -154,7 +153,7 @@ const MarketplacePage = () => {
                             />
                         </div>
 
-                        {/* Clear filters pill — only when active */}
+
                         {hasActiveFilters && (
                             <button
                                 onClick={() => setParams(new URLSearchParams(), { replace: true })}
@@ -168,7 +167,7 @@ const MarketplacePage = () => {
                 </div>
             </div>
 
-            {/* ── Content ─────────────────────────────────────────────────── */}
+
             <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
 
                 {status === "loading" && <SkeletonGrid count={8} />}
@@ -195,7 +194,7 @@ const MarketplacePage = () => {
 
                 {status === "success" && filteredItems.length > 0 && (
                     <>
-                        {/* Results row */}
+
                         <div className="mb-4 flex items-center justify-between">
                             <p className="text-sm text-gray-500">
                                 <span className="font-medium text-gray-900">{filteredItems.length}</span>{" "}
@@ -203,7 +202,7 @@ const MarketplacePage = () => {
                             </p>
                         </div>
 
-                        {/* Grid */}
+
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             {filteredItems.map((item) => (
                                 <ProductCard

@@ -50,7 +50,7 @@ const ProductCard = ({ item, linkState }: ProductCardProps) => {
             state={linkState}
             className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
         >
-            {/* Image */}
+
             <div className="relative h-48 w-full overflow-hidden bg-slate-100">
                 <Images
                     src={item.image}
@@ -58,7 +58,7 @@ const ProductCard = ({ item, linkState }: ProductCardProps) => {
                     className="h-full w-full transition-transform duration-500 group-hover:scale-105"
                 />
 
-                {/* Wishlist button overlay */}
+
                 <button
                     type="button"
                     onClick={addTo("Wishlist")}
@@ -73,7 +73,7 @@ const ProductCard = ({ item, linkState }: ProductCardProps) => {
                 </button>
             </div>
 
-            {/* Body */}
+
             <div className="flex flex-1 flex-col gap-2 p-4">
                 {/* Category & Condition */}
                 <div className="flex flex-wrap items-center gap-1.5">
@@ -87,12 +87,12 @@ const ProductCard = ({ item, linkState }: ProductCardProps) => {
                     </span>
                 </div>
 
-                {/* Title */}
+
                 <h3 className="line-clamp-2 text-sm font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
                     {item.title}
                 </h3>
 
-                {/* Meta */}
+
                 <p className="text-xs text-slate-500">
                     📍 {item.location}
                 </p>
@@ -100,10 +100,10 @@ const ProductCard = ({ item, linkState }: ProductCardProps) => {
                     🧑‍💼 {item.sellerName}
                 </p>
 
-                {/* Spacer */}
+
                 <div className="flex-1" />
 
-                {/* Price row */}
+
                 <div className="flex items-center justify-between border-t border-slate-100 pt-3">
                     <span className="text-base font-bold text-indigo-600">
                         {formatPrice(item.price)}
