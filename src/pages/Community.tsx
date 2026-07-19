@@ -1,4 +1,5 @@
-import type { Category, FeedPost } from "../types";
+import type { FeedPost } from "../types";
+import { CATEGORIES } from "../types/constants";
 import { useSearchParams } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync.ts";
 import { fetchFeedPosts } from "../api/mockapis.ts";
@@ -11,17 +12,6 @@ import { SkeletonGrid } from "../components/common/SkeletonGrid.tsx";
 import { Select } from "../components/common/Select.tsx";
 import SearchBar from "../components/common/SearchBar.tsx";
 import PostDetailModal from "../components/feed/PostDetailModal.tsx";
-
-const CATEGORIES: Category[] = [
-    "Coins",
-    "Stamps",
-    "Trading Cards",
-    "Comics",
-    "Vintage Toys",
-    "Watches",
-    "Vinyl Records",
-    "Sports Memorabilia",
-];
 
 const CommunityPages = () => {
     const [params, setParams] = useSearchParams();

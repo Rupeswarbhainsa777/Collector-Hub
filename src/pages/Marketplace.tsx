@@ -8,21 +8,11 @@ import SearchBar from "../components/common/SearchBar.tsx";
 import { EmptyState } from "../components/common/EmptyState.tsx";
 import { ErrorState } from "../components/common/ErrorState.tsx";
 import { Select } from "../components/common/Select.tsx";
-import type {Category, Condition, MarketplaceItem} from "../types";
+import type { MarketplaceItem} from "../types";
+import { CATEGORIES, CONDITIONS } from "../types/constants";
 import { SkeletonGrid } from "../components/common/SkeletonGrid.tsx";
 import ProductDetailsModal from "../components/Marketplace/ProductDetailsModal.tsx";
 
-const CONDITIONS: Condition[] = ['Mint', 'Near Mint', 'Good', 'Fair', 'Poor'];
-const CATEGORIES: Category[] = [
-    'Coins',
-    'Stamps',
-    'Trading Cards',
-    'Comics',
-    'Vintage Toys',
-    'Watches',
-    'Vinyl Records',
-    'Sports Memorabilia',
-];
 const MarketplacePage = () => {
     const [params, setParams] = useSearchParams();
     const { data: items, status, error, reload } = useAsync(fetchMarketplaceItems, []);
@@ -214,12 +204,7 @@ const MarketplacePage = () => {
                                     onClick={() => setSelectedItem(item)}
                                     className="cursor-pointer"
                                 >
-                                    <ProductCard
-                                        item={item}
-                                        linkState={{
-                                            from: `${window.location.pathname}${window.location.search}`,
-                                        }}
-                                    />
+                                    <ProductCard item={item} />
                                 </div>
                             ))}
                         </div>

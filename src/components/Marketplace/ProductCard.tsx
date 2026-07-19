@@ -1,6 +1,6 @@
 import type { MouseEvent } from "react";
 
-import type { MarketplaceItem } from "../../types";
+import type { Condition, MarketplaceItem } from "../../types";
 import { useCollection } from "../../context/CollectionContext";
 import { formatPrice } from "../../utils/formatters";
 import Images from "../common/Images";
@@ -10,10 +10,9 @@ interface ProductCardProps {
     item: MarketplaceItem;
 }
 
-const conditionColor: Record<string, string> = {
+const conditionColor: Record<Condition, string> = {
     Mint: "bg-emerald-100 text-emerald-700",
-    NearMint: "bg-teal-100 text-teal-700",
-    Excellent: "bg-blue-100 text-blue-700",
+    "Near Mint": "bg-teal-100 text-teal-700",
     Good: "bg-yellow-100 text-yellow-700",
     Fair: "bg-orange-100 text-orange-700",
     Poor: "bg-red-100 text-red-700",
@@ -69,12 +68,7 @@ const ProductCard = ({ item }: ProductCardProps) => {
                 <div className="flex flex-wrap gap-2">
                     <Badge>{item.category}</Badge>
 
-                    <span
-                        className={`rounded-full px-2 py-1 text-xs ${
-                            conditionColor[item.condition] ??
-                            "bg-slate-100 text-slate-600"
-                        }`}
-                    >
+                    <span className={`rounded-full px-2 py-1 text-xs ${conditionColor[item.condition]}`}>
                         {item.condition}
                     </span>
                 </div>

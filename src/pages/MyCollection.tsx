@@ -1,4 +1,5 @@
-import type {Category, CollectionName} from "../types";
+import type { CollectionName} from "../types";
+import { CATEGORIES } from "../types/constants";
 import {useCollection} from "../context/CollectionContext.tsx";
 import {Link, useSearchParams} from "react-router-dom";
 import CollectionItemCard from "../components/collection/CollectionItemCard.tsx";
@@ -9,17 +10,6 @@ import {useMemo} from "react";
 
 
 const TABS: CollectionName[] = ['Owned', 'Wishlist', 'Selling'];
-
-const CATEGORIES: Category[] = [
-    'Coins',
-    'Stamps',
-    'Trading Cards',
-    'Comics',
-    'Vintage Toys',
-    'Watches',
-    'Vinyl Records',
-    'Sports Memorabilia',
-];
 const MyCollection = () =>{
 
     const { items } = useCollection();

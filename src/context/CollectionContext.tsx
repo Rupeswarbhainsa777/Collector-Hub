@@ -1,5 +1,6 @@
 import {
     createContext,
+    useCallback,
     useContext,
     useMemo,
     type ReactNode,
@@ -33,8 +34,8 @@ const CollectionContext = createContext<CollectionContextValue | undefined>(
 );
 
 export function CollectionProvider({
-                                       children,
-                                   }: {
+    children,
+}: {
     children: ReactNode;
 }) {
     const [items, setItems] = useLocalStorage<CollectionItem[]>(
@@ -42,101 +43,95 @@ export function CollectionProvider({
         []
     );
 
-    const isInCollection = (
-        sourceId: string,
-        collection: CollectionName
-    ) =>
-        items.some(
-            (item) =>
-                item.sourceId === sourceId &&
-                item.collection === collection
-        );
+    const isInCollection = useCallback(
+        (sourceId: string, collection: CollectionName) =>
+            items.some(
+                (item) =>
+                    item.sourceId === sourceId &&
+                    item.collection === collection
+            ),
+        [items]
+    );
 
-    const addItem = (
-        input: AddItemInput,
-        collection: CollectionName
-    ): boolean => {
-        const alreadyExists = items.some(
-            (item) =>
-                item.sourceId === input.sourceId &&
-                item.collection === collection
-        );
-
-        if (alreadyExists) {
-            toast.error(`"${input.title}" is already in ${collection}.`);
-            return false;
-        }
-
-        const newItem: CollectionItem = {
-            id: `${input.sourceId}-${collection}-${Date.now()}`,
-            sourceId: input.sourceId,
-            title: input.title,
-            image: input.image,
-            category: input.category,
-            dateAdded: new Date().toISOString(),
-            estimatedValue: input.estimatedValue,
-            collection,
-        };
-
-        setItems((prev) => [newItem, ...prev]);
-
-        toast.success(`"${input.title}" added to ${collection}.`);
-
-        return true;
-    };
-
-    const removeItem = (id: string) => {
-        const target = items.find((item) => item.id === id);
-
-        setItems((prev) =>
-            prev.filter((item) => item.id !== id)
-        );
-
-        if (target) {
-            toast.success(
-                `"${target.title}" removed from ${target.collection}.`
+    const addItem = useCallback(
+        (input: AddItemInput, collection: CollectionName): boolean => {
+            const alreadyExists = items.some(
+                (item) =>
+                    item.sourceId === input.sourceId &&
+                    item.collection === collection
             );
-        }
-    };
 
-    const moveItem = (
-        id: string,
-        toCollection: CollectionName
-    ) => {
-        const target = items.find((item) => item.id === id);
+            if (alreadyExists) {
+                toast.error(`"${input.title}" is already in ${collection}.`);
+                return false;
+            }
 
-        if (!target) return;
+            const newItem: CollectionItem = {
+                id: `${input.sourceId}-${collection}-${Date.now()}`,
+                sourceId: input.sourceId,
+                title: input.title,
+                image: input.image,
+                category: input.category,
+                dateAdded: new Date().toISOString(),
+                estimatedValue: input.estimatedValue,
+                collection,
+            };
 
-        if (target.collection === toCollection) {
-            toast("Item is already in this collection.");
-            return;
-        }
+            setItems((prev) => [newItem, ...prev]);
+            toast.success(`"${input.title}" added to ${collection}.`);
+            return true;
+        },
+        [items, setItems]
+    );
 
-        const duplicate = items.some(
-            (item) =>
-                item.sourceId === target.sourceId &&
-                item.collection === toCollection
-        );
+    const removeItem = useCallback(
+        (id: string) => {
+            const target = items.find((item) => item.id === id);
+            setItems((prev) => prev.filter((item) => item.id !== id));
+            if (target) {
+                toast.success(
+                    `"${target.title}" removed from ${target.collection}.`
+                );
+            }
+        },
+        [items, setItems]
+    );
 
-        if (duplicate) {
-            toast.error(
-                `"${target.title}" already exists in ${toCollection}.`
+    const moveItem = useCallback(
+        (id: string, toCollection: CollectionName) => {
+            const target = items.find((item) => item.id === id);
+            if (!target) return;
+
+            if (target.collection === toCollection) {
+                toast("Item is already in this collection.");
+                return;
+            }
+
+            const duplicate = items.some(
+                (item) =>
+                    item.sourceId === target.sourceId &&
+                    item.collection === toCollection
             );
-            return;
-        }
 
-        setItems((prev) =>
-            prev.map((item) =>
-                item.id === id
-                    ? { ...item, collection: toCollection }
-                    : item
-            )
-        );
+            if (duplicate) {
+                toast.error(
+                    `"${target.title}" already exists in ${toCollection}.`
+                );
+                return;
+            }
 
-        toast.success(
-            `"${target.title}" moved to ${toCollection}.`
-        );
-    };
+            setItems((prev) =>
+                prev.map((item) =>
+                    item.id === id
+                        ? { ...item, collection: toCollection }
+                        : item
+                )
+            );
+
+            toast.success(`"${target.title}" moved to ${toCollection}.`);
+        },
+        [items, setItems]
+    );
 
     const value = useMemo(
         () => ({
@@ -146,7 +141,7 @@ export function CollectionProvider({
             moveItem,
             isInCollection,
         }),
-        [items]
+        [items, addItem, removeItem, moveItem, isInCollection]
     );
 
     return (
